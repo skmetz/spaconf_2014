@@ -7,4 +7,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  minitest (~> 5.2)
+  minitest (~> 5.3)

@@ -1,21 +1,24 @@
-# Object-Oriented Design Class
+# SpaConf - Conditionals to Polymorphism Workshop
 
 ## Dependencies
 
 You will need:
 
-* git ([windows](http://msysgit.github.com/), [mac os x: using brew](http://brew.sh/), linux: probably apt-get or yum git-core)
 * a modern version of Ruby (1.9.3 or greater)
+* the workshop code
+  * cloned from github, or
+  * copied from one of the red USB drives rotating around the room.
+
 
 ## Setup
 
 Clone this repository:
 
 ```bash
-$ git glone https://github.com/torqueforge/spaconf_2014.git
+$ git clone https://github.com/skmetz/spaconf_2014
 ```
 
-Change directories so that you are in the project:
+Change directories into the project:
 
 ```bash
 $ cd spaconf_2014
@@ -24,13 +27,13 @@ $ cd spaconf_2014
 Install the dependencies:
 
 ```bash
-$ gem install bundler # if you don't have it
+$ gem install bundler # if you don't already have it
 $ bundle install
 ```
 
-## Sanity Check Setup
+### Sanity Check
 
-To verify that everything is set up correctly, run the following command:
+Verify your setup by running the following command:
 
 ```bash
 $ ruby sanity_test.rb
@@ -50,101 +53,365 @@ Finished in 0.001317s, 759.3014 runs/s, 759.3014 assertions/s.
 1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
 ```
 
-## Exercises
+## Task
 
-Class consists of a number of exercises. Each exercise has its own
-subdirectory and README.
+There are three different bottlesN directories, containing three slightly
+different versions of the same problem.
 
-## Working on the exercises
-
-We'll tell you the next exercise to work on (for example, 'house').  Every
-exercise is in a separate folder. Each exercise folder contains a README which
-tells you what to do for that specific exercise.
-
-As we work on each exercise, we'll periodically add intermediate solutions
-to master on github and ask you to pull the code. This means that your life will
-be easier if you NEVER UPDATE your local MASTER. Instead, it's best to do your
-work in local branches.
-
-Therefore, to work on the 'house' problem you would
 ```bash
-$ git checkout master
+$ ls -ld bottles*
+
+drwxr-xr-x  5 skm  staff  170 Jun 22 09:38 bottles1
+drwxr-xr-x  5 skm  staff  170 Jun 22 09:52 bottles2
+drwxr-xr-x  5 skm  staff  170 Jun 22 09:52 bottles3
 ```
 
-Create a new branch to hold your work on this exercise:
-```bash
-$ git checkout -b my-house-branch
+You'll be randomly assigned to one of the versions; your task is to
+change the code to meet a new requirement (given below).
+
+Peeking at variants other than the one to which you have been assigned will
+clearly spoil the surprise. :-) This workshop is intended to be science...ish,
+so if you feel compelled to tinker with all the variants please do a brain wipe
+between efforts, and try not to pollute your neighbors.
+
+Within each variant, the file of most interest is:
+
+```plain
+  bottles1/lib/bottles.rb          <- you'll edit this file
 ```
 
-Change to the house directory and work on the exercise:
-```bash
-$ cd house
+Each variant has a test:
+```plain
+  bottles1/test/bottles_test.rb
 ```
 
-When you want to save your work, stage and commit your changes:
+To run the test:
+
 ```bash
-$ git add . # notice the dot
-$ git commit -m "Explain your change here"
+$ cd bottles1
+$ ruby test/bottles_test.rb
 ```
 
-When we start working on the next section of house (or move to a new exercise
-altogether) save your outstanding work (as above) and then switch back to master:
-```bash
-$ git checkout master
+The file `bottles1/test/bottles_test.rb` contains a disappointingly small
+amount of code; its job is merely to run a common test against the code in
+this variant.  
+
+The _real_ test is in the root directory:
+
+```plain
+  test/bottles_test.rb
 ```
 
-Pull the latest version from GitHub:
-```bash
-$ git pull origin
-```
+All `bottlesN` variants currently pass this test.
 
-Then create another new branch to work on the next thing.
-```bash
-$ git checkout -b my-house-branch-2 # for the next section of 'house'
-$ # or
-$ git checkout -b my-bottles-branch # for a new exercise entirely
-```
+####Your tasks are:
 
-## Git: Troubleshooting / Recovery
+  1. Change the code in your variant to output '1 6-pack' everywhere it
+  currently outputs '6 bottles'.
+  1. While you're at it, remove all of the conditionals from the code.
 
-### Throw it all away?
+<br/>
 
-You can throw all your code away like this:
+## FYI, the Lyrics
 
-First, make sure that git knows all about the files you have:
+```plain
+99 bottles of beer on the wall, 99 bottles of beer.
+Take one down and pass it around, 98 bottles of beer on the wall.
 
-```bash
-$ git add .
-```
+98 bottles of beer on the wall, 98 bottles of beer.
+Take one down and pass it around, 97 bottles of beer on the wall.
 
-Then throw the changes away:
+97 bottles of beer on the wall, 97 bottles of beer.
+Take one down and pass it around, 96 bottles of beer on the wall.
 
-```bash
-$ git reset --hard
-```
+96 bottles of beer on the wall, 96 bottles of beer.
+Take one down and pass it around, 95 bottles of beer on the wall.
 
-### Did your master diverge?
+95 bottles of beer on the wall, 95 bottles of beer.
+Take one down and pass it around, 94 bottles of beer on the wall.
 
-Go ahead and create a new branch with all your changes:
+94 bottles of beer on the wall, 94 bottles of beer.
+Take one down and pass it around, 93 bottles of beer on the wall.
 
-```bash
-$ git checkout -b my-backup-branch
-```
+93 bottles of beer on the wall, 93 bottles of beer.
+Take one down and pass it around, 92 bottles of beer on the wall.
 
-Then go back to master:
+92 bottles of beer on the wall, 92 bottles of beer.
+Take one down and pass it around, 91 bottles of beer on the wall.
 
-```bash
-$ git checkout master
-```
+91 bottles of beer on the wall, 91 bottles of beer.
+Take one down and pass it around, 90 bottles of beer on the wall.
 
-Make sure you have the most recent changes from GitHub:
+90 bottles of beer on the wall, 90 bottles of beer.
+Take one down and pass it around, 89 bottles of beer on the wall.
 
-```bash
-$ git fetch origin
-```
+89 bottles of beer on the wall, 89 bottles of beer.
+Take one down and pass it around, 88 bottles of beer on the wall.
 
-Then tell git to create a new copy of master, throwing away the old one:
+88 bottles of beer on the wall, 88 bottles of beer.
+Take one down and pass it around, 87 bottles of beer on the wall.
 
-```bash
-$ git reset --hard origin/master
+87 bottles of beer on the wall, 87 bottles of beer.
+Take one down and pass it around, 86 bottles of beer on the wall.
+
+86 bottles of beer on the wall, 86 bottles of beer.
+Take one down and pass it around, 85 bottles of beer on the wall.
+
+85 bottles of beer on the wall, 85 bottles of beer.
+Take one down and pass it around, 84 bottles of beer on the wall.
+
+84 bottles of beer on the wall, 84 bottles of beer.
+Take one down and pass it around, 83 bottles of beer on the wall.
+
+83 bottles of beer on the wall, 83 bottles of beer.
+Take one down and pass it around, 82 bottles of beer on the wall.
+
+82 bottles of beer on the wall, 82 bottles of beer.
+Take one down and pass it around, 81 bottles of beer on the wall.
+
+81 bottles of beer on the wall, 81 bottles of beer.
+Take one down and pass it around, 80 bottles of beer on the wall.
+
+80 bottles of beer on the wall, 80 bottles of beer.
+Take one down and pass it around, 79 bottles of beer on the wall.
+
+79 bottles of beer on the wall, 79 bottles of beer.
+Take one down and pass it around, 78 bottles of beer on the wall.
+
+78 bottles of beer on the wall, 78 bottles of beer.
+Take one down and pass it around, 77 bottles of beer on the wall.
+
+77 bottles of beer on the wall, 77 bottles of beer.
+Take one down and pass it around, 76 bottles of beer on the wall.
+
+76 bottles of beer on the wall, 76 bottles of beer.
+Take one down and pass it around, 75 bottles of beer on the wall.
+
+75 bottles of beer on the wall, 75 bottles of beer.
+Take one down and pass it around, 74 bottles of beer on the wall.
+
+74 bottles of beer on the wall, 74 bottles of beer.
+Take one down and pass it around, 73 bottles of beer on the wall.
+
+73 bottles of beer on the wall, 73 bottles of beer.
+Take one down and pass it around, 72 bottles of beer on the wall.
+
+72 bottles of beer on the wall, 72 bottles of beer.
+Take one down and pass it around, 71 bottles of beer on the wall.
+
+71 bottles of beer on the wall, 71 bottles of beer.
+Take one down and pass it around, 70 bottles of beer on the wall.
+
+70 bottles of beer on the wall, 70 bottles of beer.
+Take one down and pass it around, 69 bottles of beer on the wall.
+
+69 bottles of beer on the wall, 69 bottles of beer.
+Take one down and pass it around, 68 bottles of beer on the wall.
+
+68 bottles of beer on the wall, 68 bottles of beer.
+Take one down and pass it around, 67 bottles of beer on the wall.
+
+67 bottles of beer on the wall, 67 bottles of beer.
+Take one down and pass it around, 66 bottles of beer on the wall.
+
+66 bottles of beer on the wall, 66 bottles of beer.
+Take one down and pass it around, 65 bottles of beer on the wall.
+
+65 bottles of beer on the wall, 65 bottles of beer.
+Take one down and pass it around, 64 bottles of beer on the wall.
+
+64 bottles of beer on the wall, 64 bottles of beer.
+Take one down and pass it around, 63 bottles of beer on the wall.
+
+63 bottles of beer on the wall, 63 bottles of beer.
+Take one down and pass it around, 62 bottles of beer on the wall.
+
+62 bottles of beer on the wall, 62 bottles of beer.
+Take one down and pass it around, 61 bottles of beer on the wall.
+
+61 bottles of beer on the wall, 61 bottles of beer.
+Take one down and pass it around, 60 bottles of beer on the wall.
+
+60 bottles of beer on the wall, 60 bottles of beer.
+Take one down and pass it around, 59 bottles of beer on the wall.
+
+59 bottles of beer on the wall, 59 bottles of beer.
+Take one down and pass it around, 58 bottles of beer on the wall.
+
+58 bottles of beer on the wall, 58 bottles of beer.
+Take one down and pass it around, 57 bottles of beer on the wall.
+
+57 bottles of beer on the wall, 57 bottles of beer.
+Take one down and pass it around, 56 bottles of beer on the wall.
+
+56 bottles of beer on the wall, 56 bottles of beer.
+Take one down and pass it around, 55 bottles of beer on the wall.
+
+55 bottles of beer on the wall, 55 bottles of beer.
+Take one down and pass it around, 54 bottles of beer on the wall.
+
+54 bottles of beer on the wall, 54 bottles of beer.
+Take one down and pass it around, 53 bottles of beer on the wall.
+
+53 bottles of beer on the wall, 53 bottles of beer.
+Take one down and pass it around, 52 bottles of beer on the wall.
+
+52 bottles of beer on the wall, 52 bottles of beer.
+Take one down and pass it around, 51 bottles of beer on the wall.
+
+51 bottles of beer on the wall, 51 bottles of beer.
+Take one down and pass it around, 50 bottles of beer on the wall.
+
+50 bottles of beer on the wall, 50 bottles of beer.
+Take one down and pass it around, 49 bottles of beer on the wall.
+
+49 bottles of beer on the wall, 49 bottles of beer.
+Take one down and pass it around, 48 bottles of beer on the wall.
+
+48 bottles of beer on the wall, 48 bottles of beer.
+Take one down and pass it around, 47 bottles of beer on the wall.
+
+47 bottles of beer on the wall, 47 bottles of beer.
+Take one down and pass it around, 46 bottles of beer on the wall.
+
+46 bottles of beer on the wall, 46 bottles of beer.
+Take one down and pass it around, 45 bottles of beer on the wall.
+
+45 bottles of beer on the wall, 45 bottles of beer.
+Take one down and pass it around, 44 bottles of beer on the wall.
+
+44 bottles of beer on the wall, 44 bottles of beer.
+Take one down and pass it around, 43 bottles of beer on the wall.
+
+43 bottles of beer on the wall, 43 bottles of beer.
+Take one down and pass it around, 42 bottles of beer on the wall.
+
+42 bottles of beer on the wall, 42 bottles of beer.
+Take one down and pass it around, 41 bottles of beer on the wall.
+
+41 bottles of beer on the wall, 41 bottles of beer.
+Take one down and pass it around, 40 bottles of beer on the wall.
+
+40 bottles of beer on the wall, 40 bottles of beer.
+Take one down and pass it around, 39 bottles of beer on the wall.
+
+39 bottles of beer on the wall, 39 bottles of beer.
+Take one down and pass it around, 38 bottles of beer on the wall.
+
+38 bottles of beer on the wall, 38 bottles of beer.
+Take one down and pass it around, 37 bottles of beer on the wall.
+
+37 bottles of beer on the wall, 37 bottles of beer.
+Take one down and pass it around, 36 bottles of beer on the wall.
+
+36 bottles of beer on the wall, 36 bottles of beer.
+Take one down and pass it around, 35 bottles of beer on the wall.
+
+35 bottles of beer on the wall, 35 bottles of beer.
+Take one down and pass it around, 34 bottles of beer on the wall.
+
+34 bottles of beer on the wall, 34 bottles of beer.
+Take one down and pass it around, 33 bottles of beer on the wall.
+
+33 bottles of beer on the wall, 33 bottles of beer.
+Take one down and pass it around, 32 bottles of beer on the wall.
+
+32 bottles of beer on the wall, 32 bottles of beer.
+Take one down and pass it around, 31 bottles of beer on the wall.
+
+31 bottles of beer on the wall, 31 bottles of beer.
+Take one down and pass it around, 30 bottles of beer on the wall.
+
+30 bottles of beer on the wall, 30 bottles of beer.
+Take one down and pass it around, 29 bottles of beer on the wall.
+
+29 bottles of beer on the wall, 29 bottles of beer.
+Take one down and pass it around, 28 bottles of beer on the wall.
+
+28 bottles of beer on the wall, 28 bottles of beer.
+Take one down and pass it around, 27 bottles of beer on the wall.
+
+27 bottles of beer on the wall, 27 bottles of beer.
+Take one down and pass it around, 26 bottles of beer on the wall.
+
+26 bottles of beer on the wall, 26 bottles of beer.
+Take one down and pass it around, 25 bottles of beer on the wall.
+
+25 bottles of beer on the wall, 25 bottles of beer.
+Take one down and pass it around, 24 bottles of beer on the wall.
+
+24 bottles of beer on the wall, 24 bottles of beer.
+Take one down and pass it around, 23 bottles of beer on the wall.
+
+23 bottles of beer on the wall, 23 bottles of beer.
+Take one down and pass it around, 22 bottles of beer on the wall.
+
+22 bottles of beer on the wall, 22 bottles of beer.
+Take one down and pass it around, 21 bottles of beer on the wall.
+
+21 bottles of beer on the wall, 21 bottles of beer.
+Take one down and pass it around, 20 bottles of beer on the wall.
+
+20 bottles of beer on the wall, 20 bottles of beer.
+Take one down and pass it around, 19 bottles of beer on the wall.
+
+19 bottles of beer on the wall, 19 bottles of beer.
+Take one down and pass it around, 18 bottles of beer on the wall.
+
+18 bottles of beer on the wall, 18 bottles of beer.
+Take one down and pass it around, 17 bottles of beer on the wall.
+
+17 bottles of beer on the wall, 17 bottles of beer.
+Take one down and pass it around, 16 bottles of beer on the wall.
+
+16 bottles of beer on the wall, 16 bottles of beer.
+Take one down and pass it around, 15 bottles of beer on the wall.
+
+15 bottles of beer on the wall, 15 bottles of beer.
+Take one down and pass it around, 14 bottles of beer on the wall.
+
+14 bottles of beer on the wall, 14 bottles of beer.
+Take one down and pass it around, 13 bottles of beer on the wall.
+
+13 bottles of beer on the wall, 13 bottles of beer.
+Take one down and pass it around, 12 bottles of beer on the wall.
+
+12 bottles of beer on the wall, 12 bottles of beer.
+Take one down and pass it around, 11 bottles of beer on the wall.
+
+11 bottles of beer on the wall, 11 bottles of beer.
+Take one down and pass it around, 10 bottles of beer on the wall.
+
+10 bottles of beer on the wall, 10 bottles of beer.
+Take one down and pass it around, 9 bottles of beer on the wall.
+
+9 bottles of beer on the wall, 9 bottles of beer.
+Take one down and pass it around, 8 bottles of beer on the wall.
+
+8 bottles of beer on the wall, 8 bottles of beer.
+Take one down and pass it around, 7 bottles of beer on the wall.
+
+7 bottles of beer on the wall, 7 bottles of beer.
+Take one down and pass it around, 6 bottles of beer on the wall.
+
+6 bottles of beer on the wall, 6 bottles of beer.
+Take one down and pass it around, 5 bottles of beer on the wall.
+
+5 bottles of beer on the wall, 5 bottles of beer.
+Take one down and pass it around, 4 bottles of beer on the wall.
+
+4 bottles of beer on the wall, 4 bottles of beer.
+Take one down and pass it around, 3 bottles of beer on the wall.
+
+3 bottles of beer on the wall, 3 bottles of beer.
+Take one down and pass it around, 2 bottles of beer on the wall.
+
+2 bottles of beer on the wall, 2 bottles of beer.
+Take one down and pass it around, 1 bottle of beer on the wall.
+
+1 bottle of beer on the wall, 1 bottle of beer.
+Take it down and pass it around, no more bottles of beer on the wall.
+
+No more bottles of beer on the wall, no more bottles of beer.
+Go to the store and buy some more, 99 bottles of beer on the wall.
 ```
