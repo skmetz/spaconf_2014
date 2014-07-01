@@ -8,16 +8,54 @@ class Bottles
     upper_bound.downto(lower_bound).map { |i| verse(i) }.join("\n")
   end
 
-  def verse(number)
-    case number
-    when 0
-      "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n"
-    when 1
-      "1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n"
-    when 2
-      "2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n"
+  def verse(verse_number)
+    current_bn = verse_number
+    next_bn    = next_bottle_number(current_bn)
+
+    "#{quantity(current_bn).capitalize} #{container(current_bn)} of beer on the wall, " +
+    "#{quantity(current_bn)} #{container(current_bn)} of beer.\n" +
+    "#{action(current_bn)}, " +
+    "#{quantity(next_bn)} #{container(next_bn)} of beer on the wall.\n"
+  end
+
+  private
+  def container(bottle_number)
+    if bottle_number == 1
+      'bottle'
     else
-      "#{number} bottles of beer on the wall, #{number} bottles of beer.\nTake one down and pass it around, #{number - 1} bottles of beer on the wall.\n"
+      'bottles'
+    end
+  end
+
+  def pronoun(bottle_number)
+    if bottle_number == 1
+      'it'
+    else
+      'one'
+    end
+  end
+
+  def quantity(bottle_number)
+    if bottle_number == 0
+      'no more'
+    else
+      bottle_number.to_s
+    end
+  end
+
+  def action(bottle_number)
+    if bottle_number == 0
+      "Go to the store and buy some more"
+    else
+      "Take #{pronoun(bottle_number)} down and pass it around"
+    end
+  end
+
+  def next_bottle_number(bottle_number)
+    if bottle_number == 0
+      99
+    else
+      bottle_number - 1
     end
   end
 
