@@ -12,7 +12,7 @@ $ ruby test/bottles_test.rb
 ```
 
 We've implemented a simple class in ```lib/bottles.rb``` that passes all the
-tests, so when you run the tests you should sees;
+tests, so when you run the tests you should see:
 
 ```bash
 $ruby test/bottles_test.rb
@@ -27,32 +27,46 @@ Fabulous run in 0.002125s, 3764.7059 runs/s, 3764.7059 assertions/s.
 8 runs, 8 assertions, 0 failures, 0 errors, 0 skips
 ```
 
-Your task is to:
+Have a look at the test (```test/bottles_test.rb```) and the code (```lib/bottles.rb```)
+before you proceed.
+
+##Your tasks are to:
 ### Dry out the strings:
 
-  1. Watch http://bit.ly/ctp_spa1.
+  1. First, watch http://bit.ly/ctp_spa1 (or grab a red USB drive and look in /spaconf_2014 )
   1. Dry out the strings in ```lib/bottles.rb``` using the technique demostrated in
   the video.  It's important for the experiment that you follow this technique
   exactly; we'll wander around and help keep you on track.
 
-    For reference, here's the procedure:
+    For reference, here's the general process:
       1. Select the two song lines that are _most_ alike.
       1. Select the smallest _difference_ between the lines.
-      1. Write code to make these two small differences alike.
+      1. Write code to make these two small differences the same.
 
-You're code should look like https://github.com/skmetz/spaconf_2014/blob/bottles_shameless_to_dry/bottles/lib/bottles.rb
-when you're done.
+    And here's the technique for each small refactoring:
+      1. Compile the new code without executing it
+      1. Execute the new code (without using the result)
+      1. Use the result
+      1. Clean up unused code
+
+Your code should look like https://github.com/skmetz/spaconf_2014/blob/dry/bottles/lib/bottles.rb
+when you're done.  You may have chosen different method names, but the shape of
+your code should be very, very similar.
 
 ### Extract a BottleNumber class:
   1. Do an 'Extract Class' refactoring to separate the code for the song from the
-  code that depends on bottle_number.
+  methods that contain ```if``` statements that depend on bottle_number.
+  (We'll demo this after the break, so don't worry if you don't get to it.)
 
+Your code should look like https://github.com/skmetz/spaconf_2014/blob/bottle_number/bottles/lib/bottles.rb
+when you're done.
 
-  1. Once the tests pass, change the code you've written to be open/closed to
-the following new requirement:
+### Turn the conditionals into Objects
+We'll demo the technique and then let you write the code.
 
-    _When there are 6 bottles on the wall, say '1 six-pack' instead of
-'6 bottles'._
+### Implement '6-packs'
+Change the code to return '1 six-pack' instead of '6 bottles' when 6 bottles
+remain.
 <pre>
     7 bottles of beer on the wall, 7 bottles of beer,
     take one down and pass it around, 1 six-pack of beer on the wall.
