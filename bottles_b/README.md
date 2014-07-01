@@ -31,7 +31,7 @@ Your task is to:
 ### Dry out the strings:
 
   1. Watch http://bit.ly/ctp_spa1.
-  1. Dry out the strings in ```lib/bottles.rb using the technique demostrated in
+  1. Dry out the strings in ```lib/bottles.rb``` using the technique demostrated in
   the video.  It's important for the experiment that you follow this technique
   exactly; we'll wander around and help keep you on track.
 
@@ -39,6 +39,9 @@ Your task is to:
       1. Select the two song lines that are _most_ alike.
       1. Select the smallest _difference_ between the lines.
       1. Write code to make these two small differences alike.
+
+You're code should look like https://github.com/skmetz/spaconf_2014/blob/bottles_shameless_to_dry/bottles/lib/bottles.rb
+when you're done.
 
 ### Extract a BottleNumber class:
   1. Do an 'Extract Class' refactoring to separate the code for the song from the
