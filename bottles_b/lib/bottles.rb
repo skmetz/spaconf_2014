@@ -9,53 +9,60 @@ class Bottles
   end
 
   def verse(verse_number)
-    current_bn = verse_number
-    next_bn    = next_bottle_number(current_bn)
+    current_bn = BottleNumber.new(verse_number)
+    next_bn    = BottleNumber.new(current_bn.next)
 
-    "#{quantity(current_bn).capitalize} #{container(current_bn)} of beer on the wall, " +
-    "#{quantity(current_bn)} #{container(current_bn)} of beer.\n" +
-    "#{action(current_bn)}, " +
-    "#{quantity(next_bn)} #{container(next_bn)} of beer on the wall.\n"
+    "#{current_bn.quantity.capitalize} #{current_bn.container} of beer on the wall, " +
+    "#{current_bn.quantity} #{current_bn.container} of beer.\n" +
+    "#{current_bn.action}, " +
+    "#{next_bn.quantity} #{next_bn.container} of beer on the wall.\n"
+  end
+end
+
+class BottleNumber
+  attr_reader :number
+
+  def initialize(number)
+    @number = number
   end
 
-  private
-  def container(bottle_number)
-    if bottle_number == 1
+  def container
+    if number == 1
       'bottle'
     else
       'bottles'
     end
   end
 
-  def pronoun(bottle_number)
-    if bottle_number == 1
+  def pronoun
+    if number == 1
       'it'
     else
       'one'
     end
   end
 
-  def quantity(bottle_number)
-    if bottle_number == 0
+  def quantity
+    if number == 0
       'no more'
     else
-      bottle_number.to_s
+      number.to_s
     end
   end
 
-  def action(bottle_number)
-    if bottle_number == 0
+  def action
+    if number == 0
       "Go to the store and buy some more"
     else
-      "Take #{pronoun(bottle_number)} down and pass it around"
+      "Take #{pronoun} down and pass it around"
     end
   end
 
-  def next_bottle_number(bottle_number)
-    if bottle_number == 0
+  def next
+    if number == 0
       99
     else
-      bottle_number - 1
+      number - 1
     end
   end
 
